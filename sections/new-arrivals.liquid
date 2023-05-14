@@ -1,0 +1,43 @@
+<section class="new-arrivals">
+  <h1>New Arrivals</h1>
+  <div class="new-arrivalData">
+    
+
+  {% for product in collections['new-arrivals'].products limit:5 %}
+  {% assign titles = product.title | split: ' ' %}
+  {% capture titleCapialize %}
+    {% for title in titles %}
+      {{ title | capitalize }}
+    {% endfor %}
+  {% endcapture %}
+  <div class="collection_list">
+    <a href="{{product.url}}"><h3>{{ titleCapialize }}</h3></a>
+    <p>{{ product.price | money }}</p>
+    {% if product.available %}
+      <p class="in_stock">In Stock</p>
+    {% else %}
+      <p class="out_stock">Out Of Stock</p>
+    {% endif %}
+  </div>
+{% endfor %}
+   
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "New Arrivals",
+    "settings": [],
+     "presets": [
+      {
+        "name": "New Arrivals",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
